@@ -14,7 +14,7 @@ export default function Navbar() {
 
         {/* Dynamic Center Main Navigation Links */}
         <nav className={`navbar-links ${isOpen ? 'active' : ''}`}>
-          <a href="#blogs" className="nav-item">Blogs</a>
+          <a href="#blogs" className="nav-item">Problems</a>
           <a href="#events" className="nav-item">Events</a>
           <a href="#tutorials" className="nav-item">Tutorials</a>
           <a href="#roadmaps" className="nav-item">Roadmaps</a>
@@ -23,7 +23,7 @@ export default function Navbar() {
 
         {/* Right Action CTA Zone */}
         <div className="navbar-actions">
-          <button className="btn-cta">Explore communities</button>
+          <button className="btn-cta">Sign Up</button>
         </div>
 
         {/* Responsive Mobile Hamburger Trigger */}
