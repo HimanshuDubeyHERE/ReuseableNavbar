@@ -9,7 +9,7 @@ export default function Navbar() {
       <div className="navbar-container">
         {/* Brand/Logo Component */}
         <div className="navbar-logo">
-          <a href="/">CodeWithGeeks</a>
+          <a href="/">NexusCode</a>
         </div>
 
         {/* Dynamic Center Main Navigation Links */}
