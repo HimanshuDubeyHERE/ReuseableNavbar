@@ -41,6 +41,7 @@
   position: relative;
   padding: 0.25rem 0;
   transition: color 0.15s ease;
+  cursor: pointer;
 }
 
 /* Micro-interaction: Animated underline accent on focus hover states */
@@ -66,7 +67,6 @@
   transform-origin: bottom left;
 }
 
-/* Rounded Capsule Action Button Formatting */
 .btn-cta {
   background-color: #4f46e5;
   color: #ffffff !important;
@@ -84,22 +84,7 @@
   box-shadow: 0 6px 12px -2px rgba(79, 70, 229, 0.25);
 }
 
-/* Simple base state structure rule blocks for mobile view components */
-.mobile-toggle {
-  display: none;
-}
 
-@media (max-width: 768px) {
-  .mobile-toggle {
-    display: flex;
-  }
-  .navbar-links, .navbar-actions {
-    display: none;
-  }
-}
-
-
-/* Container for alignment contexts */
 .nav-dropdown-trigger {
   position: relative;
   display: inline-block;
@@ -188,4 +173,148 @@
 
 .single-col .dropdown-link:hover {
   color: #4f46e5;
+}
+
+.navbar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.4); /* Slate translucent overlay mask tint */
+  backdrop-filter: blur(4px); /* Modern frosted-glass blur filter */
+  z-index: 998;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.mobile-cta-wrapper {
+  display: none;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  /* Activate translucent overlay block layout tracking */
+  .navbar-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .navbar-actions {
+    display: none; /* Hide primary desktop layout row container buttons */
+  }
+
+  /* Structural transformation into a sleek sliding sidebar drawer panels */
+  .navbar-links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden off-screen right baseline positions */
+    width: 300px;
+    height: 100vh;
+    background-color: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 6rem 2rem 2rem 2rem;
+    gap: 1.5rem;
+    box-shadow: -4px 0 25px rgba(15, 23, 42, 0.08);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    overflow-y: auto; /* Allow menu scrolling if dropdown listings get long */
+  }
+
+  /* Slide layout slide entry toggle transitions */
+  .navbar-links.mobile-active {
+    right: 0;
+  }
+
+  .nav-item {
+    font-size: 1.05rem;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .nav-item::after {
+    display: none; /* Deactivate fine animated desktop cursor underline accents */
+  }
+
+  .mobile-cta-wrapper {
+    display: block;
+  }
+
+  .mobile-cta-wrapper .btn-cta {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  /* Convert dropdown panels into stacked layout components for touch rows */
+  .nav-dropdown-trigger {
+    width: 100%;
+  }
+
+  .dropdown-panel {
+    position: static;
+    transform: none !important;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    padding: 0 0 0 1rem;
+    margin-top: 0.25rem;
+    border-left: 2px solid #e2e8f0;
+    border-radius: 0;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dropdown-panel.show {
+    display: flex;
+  }
+
+  .dropdown-label::after {
+    float: right;
+    margin-top: 0.4rem;
+  }
+
+  .label-active::after {
+    transform: rotate(180deg);
+  }
+
+  /* Hamburger Toggle Trigger Formatting */
+  .mobile-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    z-index: 1001; /* Keep visibility stacked over sidebars */
+  }
+
+  .mobile-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #0f172a;
+    border-radius: 4px;
+    transition: all 0.25s ease-in-out;
+    transform-origin: left center;
+  }
+
+  /* Micro-interactions: Morph three lines neatly into an 'X' close indicator */
+  .mobile-toggle.toggle-active span:nth-child(1) {
+    transform: rotate(45deg) translateY(-2px);
+  }
+
+  .mobile-toggle.toggle-active span:nth-child(2) {
+    width: 0%;
+    opacity: 0;
+  }
+
+  .mobile-toggle.toggle-active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(2px);
+  }
 }
