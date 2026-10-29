@@ -97,3 +97,95 @@
     display: none;
   }
 }
+
+
+/* Container for alignment contexts */
+.nav-dropdown-trigger {
+  position: relative;
+  display: inline-block;
+}
+
+/* Caret indicator logic for clarity */
+.dropdown-label::after {
+  content: '▼';
+  font-size: 0.65rem;
+  margin-left: 0.35rem;
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.nav-dropdown-trigger:hover .dropdown-label::after {
+  transform: rotate(180deg);
+  color: #4f46e5;
+}
+
+/* Base floating state for absolute positioning panels */
+.dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  width: 280px;
+  padding: 0.75rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1010;
+}
+
+/* Active animation state toggling classes */
+.dropdown-panel.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(4px);
+}
+
+/* Internal panel structural arrangement mapping */
+.dropdown-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dropdown-link {
+  display: block;
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dropdown-link:hover {
+  background-color: #f8fafc;
+}
+
+.dropdown-link strong {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.dropdown-link p {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+  line-height: 1.25;
+}
+
+/* Helper spacing configuration rules */
+.single-col .dropdown-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.single-col .dropdown-link:hover {
+  color: #4f46e5;
+}
